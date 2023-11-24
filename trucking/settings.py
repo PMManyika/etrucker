@@ -108,6 +108,10 @@ if DEBUG:
 else:
     DATABASES = {
         "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db2.sqlite3",
+        },
+        "backup": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": "bigboy",
             "USER": "db_admin",
@@ -157,6 +161,10 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "static", "img")
+
+MEDIA_URL = "/img/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
