@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -112,12 +117,12 @@ else:
             "NAME": BASE_DIR / "db2.sqlite3",
         },
         "backup": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "bigboy",
-            "USER": "db_admin",
-            "PASSWORD": "focus@1",
-            "HOST": "localhost",
-            "PORT": "",
+            "ENGINE": os.getenv("BACKUP_DB_ENGINE"),
+            "NAME": os.getenv("BACKUP_DB_NAME"),
+            "USER": os.getenv("BACKUP_DB_USER"),
+            "PASSWORD": os.getenv("BACKUP_DB_PASSWORD"),
+            "HOST": os.getenv("BACKUP_DB_HOST"),
+            "PORT": os.getenv("BACKUP_DB_PORT"),
         },
     }
 
