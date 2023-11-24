@@ -13,7 +13,7 @@ class Expense(models.Model):
     ]
 
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateTimeField(auto_now_add=True, auto_now=False)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     expense_type = models.CharField(max_length=10, choices=EXPENSE_TYPES)
     description = models.TextField(blank=True)

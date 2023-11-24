@@ -8,7 +8,7 @@ from vehicles.models import Vehicle
 class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense
-        fields = ["vehicle", "date", "amount", "expense_type", "description"]
+        fields = ["vehicle", "amount", "expense_type", "description"]
 
 
 class ServiceRecordForm(forms.ModelForm):
