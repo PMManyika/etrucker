@@ -2,6 +2,38 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
+    <h2>Expenses Overview</h2>
+    <div class="row mb-3">
+        <!-- Total Expenses in the Last 7 Days -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Last 7 Days</h5>
+                    <p class="card-text">Total Expenses: ${{ total_amount_last_7_days }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Expenses in the Current Month -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Current Month</h5>
+                    <p class="card-text">Total Expenses: ${{ total_amount_last_month }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Expenses of All Time -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">All Time</h5>
+                    <p class="card-text">Total Expenses: ${{ total_amount_all_time }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="list-group mb-3">
         {% for expense in expenses %}
         <div class="list-group-item">
