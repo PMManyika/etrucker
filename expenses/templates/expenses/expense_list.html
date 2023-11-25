@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Last 7 Days</h5>
-                    <p class="card-text">Total Expenses: ${{ total_amount_last_7_days }}</p>
+                    <p class="card-text">Total Expenses: ${{ total_amount_last_7_days|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Current Month</h5>
-                    <p class="card-text">Total Expenses: ${{ total_amount_last_month }}</p>
+                    <p class="card-text">Total Expenses: ${{ total_amount_last_month|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">All Time</h5>
-                    <p class="card-text">Total Expenses: ${{ total_amount_all_time }}</p>
+                    <p class="card-text">Total Expenses: ${{ total_amount_all_time|floatformat:2 }}</p>
                 </div>
             </div>
         </div>
