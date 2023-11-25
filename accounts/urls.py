@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
+from .views import update_profile, custom_logout
 
 urlpatterns = [
-    path("logout/", views.custom_logout, name="logout"),
+    path("", update_profile, name="update_profile"),
+    path("logout/", custom_logout, name="logout"),
 ]

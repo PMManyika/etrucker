@@ -24,7 +24,7 @@ urlpatterns = [
     path("drivers/", include("drivers.urls")),
     path("vehicles/", include("vehicles.urls")),
     path("accounts/", include("allauth.urls")),
-    path("account/", include("accounts.urls")),
+    path("accounts/profile/", include("accounts.urls")),
 ]
 
 if settings.DEBUG:

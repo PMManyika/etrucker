@@ -106,7 +106,7 @@
             <div class="icon_pad"><i class="fas fa-user pad"></i> Profile</div>
             <div class="icon_pad"><a href="{% url 'expense_create' %}"><i class="fas fa-money-bill-wave pad"></i> Expenses</a></div>
 
-            {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
             <div class="icon_pad"><a href="{% url 'driver_list' %}"><i class="fas fa-truck pad"></i> Drivers</a></div> 
             <div class="icon_pad"><a href="{% url 'vehicle_list' %}"><i class="fas fa-car pad"></i> Vehicles</a></div>
             {% endif %} 

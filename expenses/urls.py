@@ -6,7 +6,6 @@ from drivers.views import *
 
 urlpatterns = [
     path("", views.expense_list, name="expense_list"),
-    path("accounts/profile/", views.expense_list, name="expense_list"),
     path("new/", views.expense_create, name="expense_create"),
     path("<int:id>/edit/", views.expense_update, name="expense_update"),
     path("<int:id>/delete/", views.expense_delete, name="expense_delete"),
