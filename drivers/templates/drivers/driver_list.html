@@ -19,8 +19,8 @@
         {% for driver in drivers %}
         <div class="list-group-item">
             <div class="row">
-                <div class="col-md-2">{{ driver.name }}</div>
-                <div class="col-md-2">{{ driver.phone }}</div>
+                <div class="col-md-3">{{ driver.name }}</div>
+                <div class="col-md-3">{{ driver.phone }}</div>
                 <div class="col-md-3">{{ driver.email }}</div>
                 <div class="col-md-3 text-right">
                     <a href="{% url 'driver_update' driver.id %}" class="btn btn-sm btn-warning">Edit</a>
