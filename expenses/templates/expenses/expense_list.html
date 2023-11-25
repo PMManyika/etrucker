@@ -39,7 +39,7 @@
     <div class="list-group mb-3">
         {% for expense in expenses %}
         <div class="list-group-item">
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-sm-12 col-md-4"><strong>Date:</strong> {{ expense.date }}</div>
                 <div class="col-sm-12 col-md-4"><strong>Amount:</strong> ${{ expense.amount }}</div>
                 <div class="col-sm-12 col-md-4"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
