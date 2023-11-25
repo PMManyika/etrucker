@@ -9,10 +9,52 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* The Overlay (background) */
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            z-index: 5000;
+        }
+
+        /* Overlay content */
+        .overlay-content {
+            position: relative;
+            width: 100%;
+            margin-top: 30px;
+            color: #000;
+            padding: 10px;
+        }
+
+        /* Close button */
+        .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            cursor: pointer;
+        }
+
+        .pad {
+            margin-right: 10px;
+        }
+        .icon_pad {
+            padding: 10px;
+        }
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button"  id="openOverlayBtn" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -49,7 +91,45 @@
         {% endblock %}
     </div>
 
+    <!-- Overlay -->
+    <div id="myOverlay" class="overlay">
+        <!-- Overlay content -->
+        <div class="overlay-content">
+            <div style="text-transform: capitalize; font-size: large;">
+                {{ request.user.first_name }} {{ request.user.last_name }}
+            </div>
+            <hr>
+            <div class="icon_pad"><i class="fas fa-user pad"></i> Profile</div>
+            <div class="icon_pad"><a href="{% url 'expense_create' %}"><i class="fas fa-money-bill-wave pad"></i> Expenses</a></div>
+            <div class="icon_pad"><a href="{% url 'driver_list' %}"><i class="fas fa-truck pad"></i> Drivers</a></div> <!-- Example icon for Drivers -->
+            <div class="icon_pad"><a href="{% url 'vehicle_list' %}"><i class="fas fa-car pad"></i> Vehicles</a></div> <!-- Example icon for Vehicles -->
+            <div class="icon_pad"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt pad"></i> Logout</a></div> <!-- Example icon for Logout -->
+            
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
+    <script>
+        function openNav() {
+            document.getElementById("myOverlay").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("myOverlay").style.width = "0%";
+        }
+
+        // Event listener for the button
+        document.getElementById("openOverlayBtn").addEventListener("click", openNav);
+
+        // Event listener for closing the overlay when clicking outside of the content
+        document.getElementById("myOverlay").addEventListener("click", function(event) {
+            if (event.target == this) {
+                closeNav();
+            }
+        });
+
+    </script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.5/dist/umd/popper.min.js"></script>

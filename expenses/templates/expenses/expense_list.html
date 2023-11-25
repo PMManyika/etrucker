@@ -2,16 +2,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <h2>Expenses List</h2>
-    <a href="{% url 'expense_create' %}" class="btn btn-primary mb-3">Add New Expense</a>
-
     <div class="list-group mb-3">
         {% for expense in expenses %}
         <div class="list-group-item">
             <div class="row">
-                <div class="col-md-4"><strong>Date:</strong> {{ expense.date }}</div>
-                <div class="col-md-4"><strong>Amount:</strong> ${{ expense.amount }}</div>
-                <div class="col-md-4"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
+                <div class="col-md-3"><strong>Date:</strong> {{ expense.date }}</div>
+                <div class="col-md-3"><strong>Amount:</strong> ${{ expense.amount }}</div>
+                <div class="col-md-3"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
                 {% if request.user.is_superuser %}
                     <div class="col-md-3 text-right">
                         <a href="{% url 'expense_update' expense.id %}" class="btn btn-sm btn-warning">Edit</a>
