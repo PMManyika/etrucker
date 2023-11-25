@@ -35,11 +35,11 @@
         </div>
     </div>
 
-    <h3>Expenses Details</h3>
+    <h3>Expenses Breakdown</h3>
     <div class="list-group mb-3">
         {% for expense in expenses %}
         <div class="list-group-item">
-            <div class="row mb-2">
+            <div class="row">
                 <div class="col-sm-12 col-md-4"><strong>Date:</strong> {{ expense.date }}</div>
                 <div class="col-sm-12 col-md-4"><strong>Amount:</strong> ${{ expense.amount }}</div>
                 <div class="col-sm-12 col-md-4"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
