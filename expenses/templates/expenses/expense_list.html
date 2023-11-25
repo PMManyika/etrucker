@@ -40,15 +40,15 @@
         {% for expense in expenses %}
         <div class="list-group-item">
             <div class="row">
-                <div class="col-md-3"><strong>Date:</strong> {{ expense.date }}</div>
-                <div class="col-md-3"><strong>Amount:</strong> ${{ expense.amount }}</div>
-                <div class="col-md-3"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
-                {% if request.user.is_superuser %}
+                <div class="col-sm-12 col-md-4"><strong>Date:</strong> {{ expense.date }}</div>
+                <div class="col-sm-12 col-md-4"><strong>Amount:</strong> ${{ expense.amount }}</div>
+                <div class="col-sm-12 col-md-4"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
+                <!-- {% if request.user.is_superuser %}
                     <div class="col-md-3 text-right">
                         <a href="{% url 'expense_update' expense.id %}" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{% url 'expense_delete' expense.id %}" class="btn btn-sm btn-danger">Delete</a>
                     </div>
-                {% endif %}
+                {% endif %} -->
 
             </div>
         </div>
