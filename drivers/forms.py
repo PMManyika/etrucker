@@ -5,4 +5,4 @@ from .models import Driver
 class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
-        fields = ["name", "phone", "email"]
+        fields = ["user", "phone", "date_of_birth", "license_image"]

@@ -1,8 +1,25 @@
 from django.contrib.auth import logout
-from django.shortcuts import redirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import UserUpdateForm
+from .forms import UserProfileForm, UserUpdateForm
+from .forms import UserProfileForm
+from .models import Profile
+
+
+@login_required
+def profile(request):
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    if request.method == "POST":
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("expense_list")
+    else:
+        form = UserProfileForm(instance=profile)
+
+    return render(request, "accounts/profile.html", {"form": form})
 
 
 @login_required

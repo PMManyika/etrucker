@@ -14,6 +14,7 @@
     <style>
         body {
             font-family:Roboto,Helvetica,Arial,sans-serif;
+            background-color: #f7f9fc;
         }
         #openOverlayBtn {
     width: 100%; /* Make the button full-width */
@@ -62,12 +63,12 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff !important;">
+       
             <button class="navbar-toggler" type="button"  id="openOverlayBtn" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span> e-Trucker
             </button>
-        </div>
+        
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -96,7 +97,7 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4" style="background-color: #fff !important; padding: 15px;">
         {% block content %}
         <!-- The content block will be filled in by other templates -->
         {% endblock %}
@@ -110,7 +111,7 @@
                 {{ request.user.first_name }} {{ request.user.last_name }}
             </div>
             <hr>
-            <div class="icon_pad"><i class="fas fa-user pad"></i> Profile</div>
+            <div class="icon_pad"><a href="{% url 'profile' %}"><i class="fas fa-user pad"></i> Profile</a></div>
             <div class="icon_pad"><a href="{% url 'expense_create' %}"><i class="fas fa-money-bill-wave pad"></i> Expenses</a></div>
 
             {% if request.user.is_superuser %}
