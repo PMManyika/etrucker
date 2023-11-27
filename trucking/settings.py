@@ -31,9 +31,9 @@ SECRET_KEY = "django-insecure-u!2c6c6!1w!8q613!lbqj9joi1fd_nxn^c%8aus%-t7^7)1te4
 DEBUG = False
 
 if DEBUG:
-    ALLOWED_HOSTS = ["*", "137.184.22.91"]
+    ALLOWED_HOSTS = ["*", "143.244.191.115"]
 else:
-    ALLOWED_HOSTS = ["137.184.22.91", "etrucker.co", "www.etrucker.co"]
+    ALLOWED_HOSTS = ["143.244.191.115", "etrucker.co", "www.etrucker.co"]
 
 
 # Application definition
@@ -111,10 +111,6 @@ if DEBUG:
 else:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db2.sqlite3",
-        },
-        "backup": {
             "ENGINE": os.getenv("BACKUP_DB_ENGINE"),
             "NAME": os.getenv("BACKUP_DB_NAME"),
             "USER": os.getenv("BACKUP_DB_USER"),
