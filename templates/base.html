@@ -80,6 +80,18 @@ li {
     font-size: 24px; /* Adjust the icon size as needed */
     margin-bottom: 8px; /* Spacing between icon and text */
 }
+.wrapper {
+            flex: 1; /* Make the wrapper take up remaining vertical space */
+        }
+
+        .sticky-footer {
+            position: sticky;
+            bottom: 0;
+            background-color: #fff; /* Adjust background color as needed */
+            text-align: center;
+            padding: 10px;
+            z-index: 1; /* Ensure it's on top of other content */
+        }
 
     </style>
     
@@ -130,7 +142,6 @@ li {
         <footer class="sticky-footer">
             <a href="{% url 'expense_list' %}" class="centered-home-link">
                 <i class="fas fa-home"></i>
-                Home
             </a>
         </footer>
     </div>
