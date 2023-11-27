@@ -8,7 +8,7 @@
     </div>
     
 
-    <h3>Expenses Breakdown</h3>
+    <!-- <h3>Expenses Breakdown</h3>
     <div class="list-group mb-3">
         {% for expense in expenses %}
         <div class="list-group-item">
@@ -16,12 +16,12 @@
                 <div class="col-sm-12 col-md-4"><strong>Date:</strong> {{ expense.date }}</div>
                 <div class="col-sm-12 col-md-4"><strong>Amount:</strong> ${{ expense.amount }}</div>
                 <div class="col-sm-12 col-md-4"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
-                <!-- {% if request.user.is_superuser %}
+                {% if request.user.is_superuser %}
                     <div class="col-md-3 text-right">
                         <a href="{% url 'expense_update' expense.id %}" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{% url 'expense_delete' expense.id %}" class="btn btn-sm btn-danger">Delete</a>
                     </div>
-                {% endif %} -->
+                {% endif %}
 
             </div>
         </div>
@@ -30,9 +30,9 @@
             No expenses available.
         </div>
         {% endfor %}
-    </div>
+    </div> -->
 
-    <nav aria-label="Page navigation">
+    <!-- <nav aria-label="Page navigation">
         <ul class="pagination">
             {% if expenses.has_previous %}
                 <li class="page-item">
@@ -64,7 +64,7 @@
                 </li>
             {% endif %}
         </ul>
-    </nav>
+    </nav> -->
 </div>
 
 <script>
