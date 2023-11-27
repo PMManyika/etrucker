@@ -11,8 +11,6 @@ class Expense(models.Model):
         ("TOLL", "Toll"),
         ("OTHER", "Other"),
     ]
-
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     expense_type = models.CharField(max_length=10, choices=EXPENSE_TYPES)

@@ -7,7 +7,7 @@ from .forms import ExpenseForm, VehicleForm, ServiceRecordForm
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
-    list_display = ("vehicle", "date", "amount", "expense_type", "description")
+    list_display = ("date", "amount", "expense_type", "description")
     form = ExpenseForm
 
 
