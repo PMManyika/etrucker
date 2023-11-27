@@ -39,7 +39,7 @@ def expense_list(request):
     total_amount_all_time = expenses.aggregate(total=Sum("amount"))["total"] or 0
 
     # Pagination
-    paginator = Paginator(expenses, 10)  # Show 10 expenses per page
+    paginator = Paginator(expenses, 5)  # Show 10 expenses per page
     page_number = request.GET.get("page")
     expenses_page = paginator.get_page(page_number)
 
