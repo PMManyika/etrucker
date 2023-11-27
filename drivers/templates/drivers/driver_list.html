@@ -8,21 +8,19 @@
     <div class="list-group">
         <div class="list-group-item d-none d-md-block">
             <div class="row">
-                <div class="col-md-3 d-none d-md-block">Name</div>
-                <div class="col-md-3 d-none d-md-block">Phone</div>
-                <div class="col-md-3 d-none d-md-block">Email</div>
-                <div class="col-md-3 text-right d-none d-md-block">
+                <div class="col-md-4 d-none d-md-block">Name</div>
+                <div class="col-md-4 d-none d-md-block">Phone</div>
+                <div class="col-md-4 text-right d-none d-md-block">
                     
                 </div>
             </div>
         </div>
         {% for driver in drivers %}
         <div class="list-group-item">
-            <div class="row">
-                <div class="col-md-3">{{ driver.name }}</div>
-                <div class="col-md-3">{{ driver.phone }}</div>
-                <div class="col-md-3">{{ driver.email }}</div>
-                <div class="col-md-3 text-right">
+            <div class="row" style="text-transform: capitalize;">
+                <div class="col-md-4">{{ driver.user }}</div>
+                <div class="col-md-4">{{ driver.phone }}</div>
+                <div class="col-md-4 text-right">
                     <a href="{% url 'driver_update' driver.id %}" class="btn btn-sm btn-warning">Edit</a>
                     <a href="{% url 'driver_delete' driver.id %}" class="btn btn-sm btn-danger">Delete</a>
                 </div>
@@ -32,6 +30,7 @@
         <div class="list-group-item">
             No drivers available.
         </div>
+        Í
         {% endfor %}
     </div>
 </div>
