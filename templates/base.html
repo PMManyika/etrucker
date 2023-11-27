@@ -67,7 +67,7 @@ li {
     </style>
     
 </head>
-<body>
+<div class="wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff !important;">
        <div class="col-sm-12 col-md-9">
             <button class="navbar-toggler" type="button"  id="openOverlayBtn" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,6 +108,14 @@ li {
         {% block content %}
         <!-- The content block will be filled in by other templates -->
         {% endblock %}
+    </div>
+     <!-- Sticky Footer with Centered Home Icon -->
+        <footer class="sticky-footer">
+            <a href="{% url 'expense_list' %}" class="centered-home-link">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+        </footer>
     </div>
 
     <!-- Overlay -->
