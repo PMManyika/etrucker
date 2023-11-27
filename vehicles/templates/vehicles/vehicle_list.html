@@ -4,36 +4,26 @@
 <div class="container">
     <h2>Vehicles List</h2>
     <a href="{% url 'vehicle_create' %}" class="btn btn-primary mb-3">Add New Vehicle</a>
-    <table class="table table-bordered">
-        <thead class="thead-light">
-            <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>Registration Number</th>
-                <th>Driver</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for vehicle in vehicles %}
-            <tr>
-                <td>{{ vehicle.make }}</td>
-                <td>{{ vehicle.model }}</td>
-                <td>{{ vehicle.year }}</td>
-                <td>{{ vehicle.registration_number }}</td>
-                <td>{{ vehicle.driver }}</td>
-                <td>
-                    <a href="{% url 'vehicle_update' vehicle.id %}" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="{% url 'vehicle_delete' vehicle.id %}" class="btn btn-sm btn-danger">Delete</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6">No vehicles available.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    <div class="row">
+        {% for vehicle in vehicles %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ vehicle.make }} {{ vehicle.model }}</h5>
+                    <p class="card-text"><strong>Year:</strong> {{ vehicle.year }}</p>
+                    <p class="card-text"><strong>Registration Number:</strong> {{ vehicle.registration_number }}</p>
+                    <p class="card-text"><strong>Driver:</strong> {{ vehicle.driver }}</p>
+                    <a href="{% url 'vehicle_update' vehicle.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'vehicle_delete' vehicle.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>No vehicles available.</p>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
