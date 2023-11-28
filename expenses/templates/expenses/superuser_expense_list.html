@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Superuser Expense Overview</h2>
+
+    <!-- Displaying Total Expenses -->
+    <div class="totals">
+        <p>Total Expenses Today: ${{ total_amount_today }}</p>
+        <p>Total Expenses Last 7 Days: ${{ total_amount_last_7_days }}</p>
+        <p>Total Expenses Last Month: ${{ total_amount_last_month }}</p>
+        <p>Total Expenses All Time: ${{ total_amount_all_time }}</p>
+    </div>
+
+    <!-- Table for Expenses by User -->
+    <h3>Expenses by User</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Total Expenses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.user__username }}</td>
+                <td>${{ expense.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

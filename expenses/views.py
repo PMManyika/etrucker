@@ -14,6 +14,9 @@ from drivers.forms import DriverForm
 @login_required
 def expense_list(request):
     current_date = timezone.now()
+    start_of_current_day = current_date.replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
     date_seven_days_ago = current_date - timedelta(days=7)
     first_day_of_month = current_date.replace(day=1)
 
@@ -35,6 +38,12 @@ def expense_list(request):
         expenses_data = expenses
 
     # Calculate totals
+    total_amount_today = (
+        expenses_data.filter(date__gte=start_of_current_day).aggregate(
+            total=Sum("amount")
+        )["total"]
+        or 0
+    )
     total_amount_last_7_days = (
         expenses_data.filter(date__gte=date_seven_days_ago).aggregate(
             total=Sum("amount")
@@ -49,21 +58,17 @@ def expense_list(request):
     )
     total_amount_all_time = expenses_data.aggregate(total=Sum("amount"))["total"] or 0
 
-    # Pagination
-    paginator = Paginator(expenses, 10)  # Adjust the number of items per page as needed
-    page_number = request.GET.get("page")
-    expenses_page = paginator.get_page(page_number)
-
     context = {
-        "expenses": expenses_page,
+        "expenses": expenses,  # This might be a list or a queryset, depending on user type
+        "total_amount_today": total_amount_today,
         "total_amount_last_7_days": total_amount_last_7_days,
         "total_amount_last_month": total_amount_last_month,
         "total_amount_all_time": total_amount_all_time,
     }
     template = (
-        "expenses/expense_list.html"
-        # if not request.user.is_superuser
-        # else "expenses/superuser_expense_list.html"
+        "expenses/superuser_expense_list.html"
+        if request.user.is_superuser
+        else "expenses/expense_list.html"
     )
     return render(request, template, context)
 
