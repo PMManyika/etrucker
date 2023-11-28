@@ -4,86 +4,26 @@
 <div class="container">
     <h2>Expenses Overview</h2>
     <div class="container mb-3">
-        <canvas id="expenseChart" width="300" height="300"></canvas>
+        <canvas id="expensesChart" width="400" height="400"></canvas>
     </div>
-    
-
-    <!-- <h3>Expenses Breakdown</h3>
-    <div class="list-group mb-3">
-        {% for expense in expenses %}
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-sm-12 col-md-4"><strong>Date:</strong> {{ expense.date }}</div>
-                <div class="col-sm-12 col-md-4"><strong>Amount:</strong> ${{ expense.amount }}</div>
-                <div class="col-sm-12 col-md-4"><strong>Type:</strong> {{ expense.get_expense_type_display }}</div>
-                {% if request.user.is_superuser %}
-                    <div class="col-md-3 text-right">
-                        <a href="{% url 'expense_update' expense.id %}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{% url 'expense_delete' expense.id %}" class="btn btn-sm btn-danger">Delete</a>
-                    </div>
-                {% endif %}
-
-            </div>
-        </div>
-        {% empty %}
-        <div class="list-group-item">
-            No expenses available.
-        </div>
-        {% endfor %}
-    </div> -->
-
-    <!-- <nav aria-label="Page navigation">
-        <ul class="pagination">
-            {% if expenses.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1" aria-label="First">&laquo;&laquo;</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ expenses.previous_page_number }}" aria-label="Previous">&laquo;</a>
-                </li>
-            {% endif %}
-
-            {% for num in expenses.paginator.page_range %}
-                {% if num == expenses.number %}
-                    <li class="page-item active">
-                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                    </li>
-                {% else %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-
-            {% if expenses.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ expenses.next_page_number }}" aria-label="Next">&raquo;</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ expenses.paginator.num_pages }}" aria-label="Last">&raquo;&raquo;</a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav> -->
 </div>
-
 <script>
-    var ctx = document.getElementById('expenseChart').getContext('2d');
-    var expenseChart = new Chart(ctx, {
+    var ctx = document.getElementById('expensesChart').getContext('2d');
+    var expensesChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Last 7 Days', 'Current Month', 'All Time'],
+            labels: ['Last 7 Days', 'Last Month', 'All Time'],
             datasets: [{
-                label: 'Total Expenses',
+                label: 'Expense Distribution',
                 data: [
                     {{ total_amount_last_7_days|floatformat:2 }},
                     {{ total_amount_last_month|floatformat:2 }},
                     {{ total_amount_all_time|floatformat:2 }}
                 ],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',

@@ -13,30 +13,44 @@ from drivers.forms import DriverForm
 
 @login_required
 def expense_list(request):
-    expenses = Expense.objects.filter(user=request.user).order_by("-date")
-
-    # Get current date and date for 7 days and 1 month ago
     current_date = timezone.now()
     date_seven_days_ago = current_date - timedelta(days=7)
     first_day_of_month = current_date.replace(day=1)
 
-    # Filter expenses and calculate totals
+    if request.user.is_superuser:
+        # For superusers: aggregate and order expenses by user
+        expenses = (
+            Expense.objects.values("user__username")
+            .annotate(total=Sum("amount"))
+            .order_by("-total")
+        )
+
+        # Calculate totals for all users
+        expenses_data = Expense.objects.all()
+    else:
+        # For regular users: show only their expenses
+        expenses = Expense.objects.filter(user=request.user).order_by("-date")
+
+        # Calculate totals for the logged-in user
+        expenses_data = expenses
+
+    # Calculate totals
     total_amount_last_7_days = (
-        expenses.filter(date__gte=date_seven_days_ago).aggregate(total=Sum("amount"))[
-            "total"
-        ]
+        expenses_data.filter(date__gte=date_seven_days_ago).aggregate(
+            total=Sum("amount")
+        )["total"]
         or 0
     )
     total_amount_last_month = (
-        expenses.filter(date__gte=first_day_of_month).aggregate(total=Sum("amount"))[
-            "total"
-        ]
+        expenses_data.filter(date__gte=first_day_of_month).aggregate(
+            total=Sum("amount")
+        )["total"]
         or 0
     )
-    total_amount_all_time = expenses.aggregate(total=Sum("amount"))["total"] or 0
+    total_amount_all_time = expenses_data.aggregate(total=Sum("amount"))["total"] or 0
 
     # Pagination
-    paginator = Paginator(expenses, 3)  # Show 10 expenses per page
+    paginator = Paginator(expenses, 10)  # Adjust the number of items per page as needed
     page_number = request.GET.get("page")
     expenses_page = paginator.get_page(page_number)
 
@@ -46,7 +60,11 @@ def expense_list(request):
         "total_amount_last_month": total_amount_last_month,
         "total_amount_all_time": total_amount_all_time,
     }
-    template = "expenses/expense_list.html"
+    template = (
+        "expenses/expense_list.html"
+        # if not request.user.is_superuser
+        # else "expenses/superuser_expense_list.html"
+    )
     return render(request, template, context)
 
 
