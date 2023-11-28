@@ -31,4 +31,36 @@
     </table>
 </div>
 
+<script>
+    var ctx = document.getElementById('userExpensesChart').getContext('2d');
+    var data = {
+        labels: {% autoescape off %}{{ expenses|pluck:"user__username"|join:", " }}{% endautoescape %},
+        datasets: [{
+            data: {% autoescape off %}{{ expenses|pluck:"total"|join:", " }}{% endautoescape %},
+            backgroundColor: [
+                // Add as many colors as there are users
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                // ...
+            ],
+            borderColor: [
+                // Add as many colors as there are users
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                // ...
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    var userExpensesChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
 {% endblock %}
