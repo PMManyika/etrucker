@@ -7,23 +7,20 @@
         <canvas id="expensesChart" width="400" height="400"></canvas>
     </div>
     {% if user.is_superuser %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Total Expenses</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for expense in expenses %}
-            <tr>
-                <td>{{ expense.user__username }}</td>
-                <td>${{ expense.total }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
+    <div class="container">
+        <div class="row font-weight-bold">
+            <div class="col-md-6">Driver</div>
+            <div class="col-md-6">Total Expenses</div>
+        </div>
+        {% for expense in expenses %}
+            <div class="row">
+                <div class="col-md-6">{{ expense.user__username }}</div>
+                <div class="col-md-6">${{ expense.total }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 </div>
 <script>
     var ctx = document.getElementById('expensesChart').getContext('2d');
