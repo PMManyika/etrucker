@@ -95,8 +95,20 @@ li {
             padding: 10px;
             z-index: 5000; /* Ensure it's on top of other content */
         }
+    .centered-table {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-    </style>
+    @media (min-width: 768px) { /* Adjusts for medium-sized screens and larger */
+        .centered-table {
+            width: 30%;
+        }
+    }
+
+
+</style>
     
 </head>
 <div class="wrapper">

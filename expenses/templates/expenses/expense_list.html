@@ -8,17 +8,25 @@
     </div>
     {% if user.is_superuser %}
     <div class="container">
-        <div class="row font-weight-bold">
-            <div class="col-6">Driver</div>
-            <div class="col-6">Total Expenses</div>
-        </div>
-        {% for expense in expenses %}
-            <div class="row">
-                <div class="col-6">{{ expense.user__username }}</div>
-                <div class="col-6">${{ expense.total }}</div>
-            </div>
-        {% endfor %}
+        <table class="table centered-table center">
+            <thead class="font-weight-bold">
+                <tr>
+                    <th style="text-align: right;">Driver</th>
+                    <th style="text-align: center;">Total Expenses</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                <tr>
+                    <td style="text-align: right;">{{ expense.user__username }}</td>
+                    <td style="text-align: center;">${{ expense.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+    
+    
 {% endif %}
 
 </div>

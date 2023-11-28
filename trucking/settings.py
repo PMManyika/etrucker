@@ -33,7 +33,7 @@ DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = []
 else:
-    ALLOWED_HOSTS = ["143.244.191.115", "etrucker.co", "www.etrucker.co"]
+    ALLOWED_HOSTS = ["etrucker.co", "www.etrucker.co"]
 
 
 # Application definition
