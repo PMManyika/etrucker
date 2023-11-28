@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <h2>Superuser Expense Overview</h2>
+    <h3>Expense Distribution by User</h3>
+    <canvas id="userExpensesChart" width="400" height="400"></canvas>
+    
+    <h4>Expense Overview</h4>
 
     <!-- Displaying Total Expenses -->
     <div class="totals">
@@ -12,7 +15,7 @@
     </div>
 
     <!-- Table for Expenses by User -->
-    <h3>Expenses by User</h3>
+    <h4>Expenses by User</h4>
     <table class="table">
         <thead>
             <tr>
@@ -30,4 +33,35 @@
         </tbody>
     </table>
 </div>
+<script>
+    var ctx = document.getElementById('userExpensesChart').getContext('2d');
+    var data = {
+        labels: {% autoescape off %}{{ expenses|pluck:"user__username"|join:", " }}{% endautoescape %},
+        datasets: [{
+            data: {% autoescape off %}{{ expenses|pluck:"total"|join:", " }}{% endautoescape %},
+            backgroundColor: [
+                // Add as many colors as there are users
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                // ...
+            ],
+            borderColor: [
+                // Add as many colors as there are users
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                // ...
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    var userExpensesChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
 {% endblock %}
