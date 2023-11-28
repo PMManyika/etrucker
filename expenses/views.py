@@ -13,10 +13,7 @@ from drivers.forms import DriverForm
 
 @login_required
 def expense_list(request):
-    if request.user.is_superuser:
-        expenses = Expense.objects.all().order_by("-date")
-    else:
-        expenses = Expense.objects.filter(user=request.user).order_by("-date")
+    expenses = Expense.objects.filter(user=request.user).order_by("-date")
 
     # Get current date and date for 7 days and 1 month ago
     current_date = timezone.now()
