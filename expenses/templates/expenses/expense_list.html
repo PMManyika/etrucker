@@ -27,13 +27,13 @@
     var expensesChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Last 7 Days', 'Last Month', 'All Time'],
+            labels: ['Last 7 Days', 'Last Month', 'Today'],
             datasets: [{
                 label: 'Expense Distribution',
                 data: [
                     {{ total_amount_last_7_days|floatformat:2 }},
                     {{ total_amount_last_month|floatformat:2 }},
-                    {{ total_amount_all_time|floatformat:2 }}
+                    {{ total_amount_today|floatformat:2 }}
                 ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)',
