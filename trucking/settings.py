@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-u!2c6c6!1w!8q613!lbqj9joi1fd_nxn^c%8aus%-t7^7)1te4
 DEBUG = False
 
 if DEBUG:
-    ALLOWED_HOSTS = ["*", "143.244.191.115"]
+    ALLOWED_HOSTS = []
 else:
     ALLOWED_HOSTS = ["143.244.191.115", "etrucker.co", "www.etrucker.co"]
 

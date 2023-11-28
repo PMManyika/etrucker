@@ -65,11 +65,7 @@ def expense_list(request):
         "total_amount_last_month": total_amount_last_month,
         "total_amount_all_time": total_amount_all_time,
     }
-    template = (
-        "expenses/superuser_expense_list.html"
-        if request.user.is_superuser
-        else "expenses/expense_list.html"
-    )
+    template = "expenses/expense_list.html"
     return render(request, template, context)
 
 

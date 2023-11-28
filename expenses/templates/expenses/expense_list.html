@@ -6,6 +6,24 @@
     <div class="container mb-3">
         <canvas id="expensesChart" width="400" height="400"></canvas>
     </div>
+    {% if user.is_superuser %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Total Expenses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.user__username }}</td>
+                <td>${{ expense.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
 </div>
 <script>
     var ctx = document.getElementById('expensesChart').getContext('2d');
