@@ -60,6 +60,7 @@ def expense_list(request):
 
     context = {
         "expenses": expenses,  # This might be a list or a queryset, depending on user type
+        "expenses_data": expenses_data,
         "total_amount_today": total_amount_today,
         "total_amount_last_7_days": total_amount_last_7_days,
         "total_amount_last_month": total_amount_last_month,

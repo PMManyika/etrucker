@@ -25,10 +25,27 @@
             </tbody>
         </table>
     </div>
-    
-    
 {% endif %}
-
+<div class="container">
+    <table class="table centered-table center">
+        <thead class="font-weight-bold">
+            <tr>
+                <th style="text-align: right;">Expense</th>
+                <th style="text-align: center;">Total Expenses</th>
+                <th style="text-align: center;">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses_data %}
+            <tr>
+                <td style="text-align: right;">{{ expense.expense_type }}</td>
+                <td style="text-align: center;">${{ expense.amount }}</td>
+                <td style="text-align: center;">{{ expense.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 </div>
 <script>
     var ctx = document.getElementById('expensesChart').getContext('2d');
